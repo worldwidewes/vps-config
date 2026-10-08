@@ -1,0 +1,13 @@
+9fa1e6f302261091975e8b59205963ab1d8a7468eb18c6cb0f9ff467562e9010
+karakeep-d8om_karakeep-data
+karakeep-d8om_meilisearch-data
+metamcp-bpeb_postgres_data
+n8n-with-ai-assistant-v7zl_n8n_data
+n8n-with-ai-assistant-v7zl_sandbox-tls
+open-webui-4fhy_open-webui
+ps5stock-5c2b_stock-data
+searxng-nfja_searxng-cache
+searxng-nfja_searxng-config
+traefik-f7zu_traefik-letsencrypt
+wordpress-j2gx_db
+wordpress-j2gx_wordpress

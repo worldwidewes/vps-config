@@ -1,0 +1,54 @@
+#cloud-config
+#
+# Optional: paste this as the "user data"/cloud-init at VPS creation time
+# (Hostinger VPS → Create → Cloud-init/Startup script) for a fully unattended
+# rebuild.
+#
+# TRADE-OFF: to run with zero human interaction, the secrets-bundle passphrase
+# has to be supplied here. User-data is stored on the instance and may be
+# readable via the provider's metadata service. If that is not acceptable,
+# leave PASS_PHRASE empty, let the box come up with config deployed but no
+# secrets, then run `bash /root/bootstrap.sh` manually and type the passphrase.
+#
+# Replace every <PLACEHOLDER> before use.
+
+package_update: true
+packages:
+  - ca-certificates
+  - curl
+  - git
+  - gnupg
+
+write_files:
+  - path: /root/.vps-bootstrap.env
+    permissions: '0600'
+    content: |
+      REPO_URL=https://github.com/worldwidewes/vps-config.git
+      SECRETS_URL=<URL-TO-secrets.tar.gz.gpg>
+      RESTORE_DATA=0
+      RESTIC_REPOSITORY=<R2-OR-S3-URL>
+      # Only used if RESTORE_DATA=1:
+      # RESTIC_PASSWORD=<RESTIC-PASSPHRASE>
+
+  # Passphrase for the GPG secrets bundle. DELETE THIS FILE after a successful
+  # build (the runcmd below shreds it). Leave blank for interactive mode.
+  - path: /root/.secrets-pass
+    permissions: '0600'
+    content: |
+      <SECRETS-BUNDLE-PASSPHRASE>
+
+runcmd:
+  - [ bash, -lc, "set -e; . /root/.vps-bootstrap.env; \
+      curl -fsSL https://raw.githubusercontent.com/worldwidewes/vps-config/main/bootstrap.sh -o /root/bootstrap.sh" ]
+  - [ bash, -lc, "set -e; . /root/.vps-bootstrap.env; \
+      curl -fsSL \"$SECRETS_URL\" -o /root/secrets.tar.gz.gpg" ]
+  # Decrypt using the loopback passphrase, then remove the passphrase file.
+  - [ bash, -lc, "set -e; \
+      gpg --quiet --batch --yes --pinentry-mode loopback --passphrase-file /root/.secrets-pass --decrypt /root/secrets.tar.gz.gpg | tar -xzf - -C -" ]
+  - [ bash, -lc, "shred -u /root/.secrets-pass || rm -f /root/.secrets-pass" ]
+  - [ bash, -lc, "set -e; . /root/.vps-bootstrap.env; \
+      SKIP_SECRETS=1 bash /root/bootstrap.sh" ]
+
+# NOTE: bootstrap.sh prompts via gpg by default. For unattended mode, either
+# extend bootstrap.sh to accept the loopback passphrase, or run the two gpg
+# steps above before invoking it (shown here) with decryption already done.

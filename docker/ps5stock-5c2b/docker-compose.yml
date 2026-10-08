@@ -1,0 +1,26 @@
+services:
+  app:
+    build: ./app
+    restart: unless-stopped
+    environment:
+      - TZ=America/New_York
+      - DB_PATH=/data/stock.db
+      - CHECK_INTERVAL=${CHECK_INTERVAL:-180}
+      - REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-20}
+      - NTFY_URL=${NTFY_URL:-}
+      - NTFY_TOPIC=${NTFY_TOPIC:-}
+      - DISCORD_WEBHOOK=${DISCORD_WEBHOOK:-}
+      - BESTBUY_API_KEY=${BESTBUY_API_KEY:-}
+    volumes:
+      - stock-data:/data
+    expose:
+      - "8000"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${TRAEFIK_SUBDOMAIN}.${TRAEFIK_HOST}`)
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=websecure
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls.certresolver=letsencrypt
+      - traefik.http.services.${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=8000
+
+volumes:
+  stock-data:

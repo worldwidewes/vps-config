@@ -1,0 +1,27 @@
+services:
+  portfolio:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://dev.weschance.com}
+    image: wes-portfolio:preview
+    container_name: wes-portfolio-preview
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://dev.weschance.com}
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=wes-portfolio-preview
+      - traefik.http.routers.wes-portfolio-preview.rule=Host(`dev.weschance.com`)
+      - traefik.http.routers.wes-portfolio-preview.entrypoints=websecure
+      - traefik.http.routers.wes-portfolio-preview.tls.certresolver=letsencrypt
+      - traefik.http.services.wes-portfolio-preview.loadbalancer.server.port=3000
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: wes-portfolio-preview

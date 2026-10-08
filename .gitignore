@@ -1,0 +1,10 @@
+# Secrets never belong in the public repo.
+secrets/
+secrets.tar.gz
+secrets.tar.gz.gpg
+*.env
+!*.env.example
+*.pem
+*.key
+id_*
+.bootstrap-state

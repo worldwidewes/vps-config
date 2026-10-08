@@ -1,0 +1,36 @@
+services:
+  browser-use:
+    build: .
+    container_name: browser-use-mcp
+    restart: unless-stopped
+    init: true
+    mem_limit: 2g
+    shm_size: 512mb
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      BROWSER_USE_HEADLESS: "true"
+      BROWSER_USE_DISABLE_SECURITY: "false"
+      BROWSER_USE_LLM_MODEL: ${BROWSER_USE_LLM_MODEL:-openai/gpt-6-luna}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://openrouter.ai/api/v1}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    expose:
+      - "8080"
+    networks:
+      - metamcp-browser
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/status', timeout=5)"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  metamcp-browser:
+    external: true
+    name: metamcp-browser

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1020" />
+    <meta name="description" content="A directory of Wes's self-hosted apps and tools." />
+    <title>Apps &amp; Tools</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1020;
+        --panel: #121a2d;
+        --panel-hover: #18233a;
+        --line: #26334d;
+        --text: #f4f7fb;
+        --muted: #9caac0;
+        --accent: #9ae6b4;
+        --accent-ink: #10251b;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 15% 0%, rgba(44, 90, 93, .26), transparent 38rem),
+          var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      main { width: min(1080px, calc(100% - 40px)); margin: 0 auto; padding: 72px 0 48px; }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--accent);
+        font-size: .76rem;
+        font-weight: 750;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+      }
+
+      .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+      h1 { margin: 18px 0 12px; font-size: clamp(2.5rem, 7vw, 4.7rem); letter-spacing: -.065em; line-height: 1.02; }
+      .intro { max-width: 570px; margin: 0; color: var(--muted); font-size: 1.08rem; }
+
+      .group { margin-top: 48px; }
+      .group-heading { display: flex; align-items: center; gap: 14px; margin: 0 0 16px; color: #d8e0ec; font-size: .83rem; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+      .group-heading::after { height: 1px; flex: 1; background: var(--line); content: ""; }
+
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 14px; }
+      .card {
+        position: relative;
+        display: flex;
+        min-height: 158px;
+        flex-direction: column;
+        padding: 22px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: linear-gradient(145deg, rgba(255,255,255,.025), transparent 65%), var(--panel);
+        color: inherit;
+        text-decoration: none;
+        transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
+      }
+
+      .card:hover, .card:focus-visible { transform: translateY(-3px); border-color: #5c987c; background-color: var(--panel-hover); outline: none; }
+      .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .icon { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid #385144; border-radius: 12px; background: rgba(154, 230, 180, .09); color: var(--accent); font-size: 1.06rem; font-weight: 800; }
+      .arrow { color: #8292aa; font-size: 1.2rem; transition: transform .18s ease; }
+      .card:hover .arrow, .card:focus-visible .arrow { transform: translate(3px, -3px); color: var(--accent); }
+      .card h3 { margin: 18px 0 3px; font-size: 1.08rem; letter-spacing: -.02em; }
+      .card p { margin: 0; color: var(--muted); font-size: .91rem; }
+      .host { margin-top: auto; padding-top: 15px; color: #7f91aa; font-size: .75rem; }
+
+      footer { display: flex; align-items: center; gap: 9px; margin-top: 52px; color: #718098; font-size: .82rem; }
+      footer .pulse { width: 7px; height: 7px; }
+
+      @media (max-width: 600px) { main { width: min(100% - 28px, 1080px); padding-top: 48px; } .group { margin-top: 38px; } }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="eyebrow"><span class="pulse" aria-hidden="true"></span> Wes's self-hosted tools</div>
+        <h1>Apps &amp; tools</h1>
+        <p class="intro">A quick launchpad for the services running on my server. Choose an app below; some services may ask you to sign in.</p>
+      </header>
+
+      <section class="group" aria-labelledby="ai-heading">
+        <h2 class="group-heading" id="ai-heading">AI &amp; knowledge</h2>
+        <div class="grid">
+          <a class="card" href="https://chat.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">C</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Open WebUI</h3><p>Chat with locally hosted AI models.</p><span class="host">chat.weschance.com</span>
+          </a>
+          <a class="card" href="https://anythingllm.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">A</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>AnythingLLM</h3><p>Workspaces for chatting with documents and AI.</p><span class="host">anythingllm.weschance.com</span>
+          </a>
+          <a class="card" href="https://hermes-agent.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">H</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Hermes Agent</h3><p>Personal AI agent and dashboard.</p><span class="host">hermes-agent.weschance.com</span>
+          </a>
+          <a class="card" href="https://karakeep.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">K</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Karakeep</h3><p>Save, organize, and revisit links and notes.</p><span class="host">karakeep.weschance.com</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="work-heading">
+        <h2 class="group-heading" id="work-heading">Automation &amp; search</h2>
+        <div class="grid">
+          <a class="card" href="https://n8n.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">n8n</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>n8n</h3><p>Build and run workflow automations.</p><span class="host">n8n.weschance.com</span>
+          </a>
+          <a class="card" href="https://searxng.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">S</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>SearXNG</h3><p>Search the web through a metasearch engine.</p><span class="host">searxng.weschance.com</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="shopping-heading">
+        <h2 class="group-heading" id="shopping-heading">Shopping &amp; monitoring</h2>
+        <div class="grid">
+          <a class="card" href="https://ps5stock.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">PS</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>PS5 Pro Stock</h3><p>Live PS5 Pro availability across retailers.</p><span class="host">ps5stock.weschance.com</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="server-heading">
+        <h2 class="group-heading" id="server-heading">Server &amp; creative</h2>
+        <div class="grid">
+          <a class="card" href="https://grafana.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">G</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Grafana</h3><p>Server metrics, dashboards, and monitoring.</p><span class="host">grafana.weschance.com</span>
+          </a>
+          <a class="card" href="https://speedtest.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">↗</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>OpenSpeedTest</h3><p>Test your connection speed to the server.</p><span class="host">speedtest.weschance.com</span>
+          </a>
+          <a class="card" href="https://blender.weschance.com/">
+            <div class="card-top"><span class="icon" aria-hidden="true">B</span><span class="arrow" aria-hidden="true">↗</span></div>
+            <h3>Blender</h3><p>Remote desktop access to Blender.</p><span class="host">blender.weschance.com</span>
+          </a>
+        </div>
+      </section>
+
+      <footer><span class="pulse" aria-hidden="true"></span> Services are hosted on Wes's server and may occasionally be unavailable for maintenance.</footer>
+    </main>
+  </body>
+</html>

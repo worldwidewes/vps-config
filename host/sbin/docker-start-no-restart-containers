@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+
+# Docker has no daemon-wide default restart policy. Start stopped containers
+# with no restart policy once at boot. Add label vps.autostart=false to opt out.
+docker ps -aq | while IFS= read -r id; do
+    [ -n "$id" ] || continue
+
+    details=$(docker inspect --format '{{.State.Status}}|{{.HostConfig.RestartPolicy.Name}}|{{index .Config.Labels "vps.autostart"}}|{{index .Config.Labels "com.docker.compose.service"}}' "$id" 2>/dev/null) || continue
+    state=${details%%|*}
+    details=${details#*|}
+    policy=${details%%|*}
+    details=${details#*|}
+    autostart=${details%%|*}
+    compose_service=${details#*|}
+
+    case "$state" in
+        exited|created) ;;
+        *) continue ;;
+    esac
+    case "$policy" in
+        no|'') ;;
+        *) continue ;;
+    esac
+    [ "$autostart" != "false" ] || continue
+    # This is a successful one-shot certificate generation job, not a daemon.
+    [ "$compose_service" != "sandbox-certs" ] || continue
+
+    logger -t docker-autostart "Starting container $id (no restart policy)"
+    docker start "$id" >/dev/null || logger -t docker-autostart "Failed to start container $id"
+done

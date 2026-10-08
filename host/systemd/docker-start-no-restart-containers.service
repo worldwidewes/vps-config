@@ -1,0 +1,12 @@
+[Unit]
+Description=Start Docker containers without restart policies at boot
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/docker-start-no-restart-containers
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

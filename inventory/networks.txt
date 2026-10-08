@@ -1,0 +1,15 @@
+apps-portal-vq3c_default
+bridge
+hermes-agent-hyhd_default
+host
+karakeep-d8om_default
+karakeep-ollama
+metamcp-bpeb_default
+metamcp-browser
+n8n-with-ai-assistant-v7zl_default
+none
+open-webui-4fhy_default
+ps5stock-5c2b_default
+searxng-nfja_default
+wes-portfolio-preview
+wordpress-j2gx_default

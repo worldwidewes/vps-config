@@ -1,0 +1,19 @@
+ps5stock-5c2b-app-1	ps5stock-5c2b-app	Up About an hour
+browser-use-mcp	browser-use-mcp-browser-use	Up 3 hours (healthy)
+metamcp-bpeb-app-1	ghcr.io/metatool-ai/metamcp:latest	Up 3 hours (healthy)
+metamcp-bpeb-postgres-1	postgres:16-alpine	Up 3 hours (healthy)
+wordpress-j2gx-wordpress-1	wordpress:latest	Up 3 hours
+wordpress-j2gx-db-1	mysql:8	Up 3 hours
+apps-portal-vq3c-apps-portal-1	nginx:alpine	Up 3 hours
+n8n-with-ai-assistant-v7zl-n8n-1	docker.n8n.io/n8nio/n8n	Up 2 hours
+open-webui-4fhy-open-webui-1	ghcr.io/open-webui/open-webui:main	Up 3 hours (healthy)
+n8n-with-ai-assistant-v7zl-sandbox-runner-1-1	n8nio/n8n-sandbox-service-runner-dind:latest	Up 3 hours
+n8n-with-ai-assistant-v7zl-sandbox-api-1	n8nio/n8n-sandbox-service-api:latest	Up 3 hours
+n8n-with-ai-assistant-v7zl-sandbox-certs-1	n8nio/n8n-sandbox-service-api:latest	Exited (0) 11 days ago
+wes-portfolio-preview	wes-portfolio:preview	Up 3 hours
+hermes-agent-hyhd-hermes-agent-1	ghcr.io/hostinger/hvps-hermes-agent:latest	Up 3 hours
+karakeep-d8om-web-1	ghcr.io/karakeep-app/karakeep:release	Up 3 hours (healthy)
+searxng-nfja-searxng-1	ghcr.io/searxng/searxng:latest	Up 3 hours
+traefik-f7zu-traefik-1	traefik:latest	Up 3 hours
+karakeep-d8om-chrome-1	ghcr.io/karakeep-app/karakeep-chrome:release	Up 3 hours
+karakeep-d8om-meilisearch-1	getmeili/meilisearch:v1.13.3	Up 3 hours

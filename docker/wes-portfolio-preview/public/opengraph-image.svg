@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#080d12"/><path d="M700 80h500M700 160h380M700 240h500M700 320h360M700 400h500M700 480h420" stroke="#18232d" stroke-width="1"/>
+  <circle cx="910" cy="315" r="220" fill="none" stroke="#263b4b"/><circle cx="910" cy="315" r="155" fill="none" stroke="#314c5e"/><circle cx="910" cy="315" r="86" fill="#101923" stroke="#77bce8"/>
+  <path d="m910 229-130-119m130 205 130-119m-130 119-130 119m130-119 130 119" stroke="#77bce8" opacity=".55"/>
+  <text x="84" y="115" fill="#77bce8" font-family="Arial,sans-serif" font-size="20" letter-spacing="5">INDEPENDENT TECHNICAL BUILDER</text>
+  <text x="80" y="240" fill="#f4f7f8" font-family="Arial,sans-serif" font-size="92" font-weight="700">WES<tspan fill="#77bce8">.</tspan></text>
+  <text x="84" y="315" fill="#f4f7f8" font-family="Arial,sans-serif" font-size="38">Mission Systems</text><text x="84" y="380" fill="#a8b6c0" font-family="Arial,sans-serif" font-size="24">AI · Software · Real-world hardware</text>
+  <text x="84" y="555" fill="#738391" font-family="monospace" font-size="16" letter-spacing="3">SAN DIEGO / CALIFORNIA</text>
+</svg>
