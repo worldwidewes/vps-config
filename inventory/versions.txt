@@ -1,4 +1,3 @@
-Docker Compose version v5.5.1
 docker: Docker version 29.8.1, build 4a63305
 compose: Docker Compose version v5.5.1
 os: Ubuntu 26.04.1 LTS

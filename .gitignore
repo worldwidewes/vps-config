@@ -3,7 +3,7 @@ secrets/
 secrets.tar.gz
 secrets.tar.gz.gpg
 *.env
-!*.env.example
+!*.env.template
 *.pem
 *.key
 id_*
